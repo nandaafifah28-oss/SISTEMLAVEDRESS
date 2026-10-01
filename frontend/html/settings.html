@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Settings - LAVE</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="settings">
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>LAVE</h1>
+                <span>DRESS RENTAL & ACCOUNTING</span>
+            </div>
+            <nav class="nav">
+                <div class="nav-title">Overview</div>
+                <a href="dashboard.html" data-page="dashboard">Dashboard</a>
+
+                <div class="nav-title">Master Data</div>
+                <a href="customer.html">Customer</a>
+                <a href="dress.html">Dress</a>
+                <a href="supplier.html">Supplier</a>
+                <a href="kategori-dress.html">Kategori Dress</a>
+                <a href="kategori-biaya.html">Kategori Biaya</a>
+                <a href="akun.html">Daftar Akun</a>
+
+                <div class="nav-title">Penyewaan</div>
+                <a href="penyewaan.html">Penyewaan</a>
+                <a href="pengembalian.html">Pengembalian</a>
+                <a href="denda.html">Denda & Kerusakan</a>
+
+                <div class="nav-title">Persediaan & Keuangan</div>
+                <a href="pembelian.html">Pembelian</a>
+                <a href="persediaan.html">Ketersediaan Dress</a>
+                <a href="utang.html">Utang</a>
+                <a href="biaya-operasional.html">Biaya Operasional</a>
+
+                <div class="nav-title">Akuntansi</div>
+                <a href="buku-besar.html">Buku Besar</a>
+                <a href="neraca-saldo.html">Neraca Saldo</a>
+                <a href="laporan.html">Laporan Keuangan</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <strong>LAVE Management System</strong>
+                    <div class="muted" style="font-size:11px">Configuration, access control, and security</div>
+                </div>
+                <div class="muted" id="currentUser">Memuat sesi...</div>
+            </header>
+            <div id="toast" class="toast"></div>
+
+            <section class="page">
+                <div class="page-title">
+                    <div>
+                        <h2>Settings / Pengaturan</h2>
+                        <p>Pusat konfigurasi bisnis, akun, keamanan, dan accounting.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Profil Bisnis</h3>
+                        <form id="businessForm">
+                            <div class="field">
+                                <label>Nama Bisnis</label>
+                                <input id="business_name" required>
+                            </div>
+                            <div class="field">
+                                <label>Alamat</label>
+                                <textarea id="business_address"></textarea>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label>Telepon</label>
+                                    <input id="business_phone">
+                                </div>
+                                <div class="field">
+                                    <label>Email</label>
+                                    <input id="business_email" type="email">
+                                </div>
+                                <div class="field">
+                                    <label>Website</label>
+                                    <input id="business_website" type="url">
+                                </div>
+                                <div class="field">
+                                    <label>NPWP</label>
+                                    <input id="business_tax">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Logo URL</label>
+                                <input id="business_logo" type="url">
+                            </div>
+                            <div class="field">
+                                <label>Deskripsi</label>
+                                <textarea id="business_description"></textarea>
+                            </div>
+                            <button class="btn btn-primary">Simpan Profil Bisnis</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Akun & Keamanan</h3>
+                        <div class="field">
+                            <label>Email Login</label>
+                            <input id="account_email" readonly>
+                        </div>
+                        <div class="field">
+                            <label>Role</label>
+                            <input id="account_role" readonly>
+                        </div>
+                        <div class="field">
+                            <label>Status Akun</label>
+                            <input id="account_status" readonly>
+                        </div>
+                        <form id="passwordForm">
+                            <div class="field">
+                                <label>Password Baru</label>
+                                <input id="new_password" type="password" minlength="8" required>
+                            </div>
+                            <button class="btn btn-light">Ganti Password</button>
+                        </form>
+                        <button class="btn btn-danger" id="logoutButton" style="margin-top:12px">Logout</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Pengaturan Akuntansi</h3>
+                        <form id="accountingForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label>Mata Uang</label>
+                                    <input id="currency" value="IDR">
+                                </div>
+                                <div class="field">
+                                    <label>Metode Pencatatan</label>
+                                    <select id="accounting_method">
+                                        <option>Accrual</option>
+                                        <option>Cash</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Awal Periode</label>
+                                    <input id="period_start" type="date">
+                                </div>
+                                <div class="field">
+                                    <label>Akhir Periode</label>
+                                    <input id="period_end" type="date">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Simpan Accounting</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Preferensi Sistem</h3>
+                        <form id="preferenceForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label>Tema</label>
+                                    <select id="theme">
+                                        <option value="light">Light</option>
+                                        <option value="dark">Dark</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Jumlah Data per Halaman</label>
+                                    <input id="rows_per_page" type="number" min="5" max="200">
+                                </div>
+                                <div class="field">
+                                    <label>Periode Dashboard</label>
+                                    <select id="dashboard_period">
+                                        <option>month</option>
+                                        <option>year</option>
+                                        <option>today</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label><input id="confirm_delete" type="checkbox"> Konfirmasi sebelum nonaktifkan</label>
+                            <br><br>
+                            <button class="btn btn-primary">Simpan Preferensi</button>
+                        </form>
+                    </div>
+
+                    <div class="card" style="grid-column:1/-1">
+                        <h3>Audit Log</h3>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Waktu</th>
+                                        <th>Action</th>
+                                        <th>Module</th>
+                                        <th>Record</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="auditRows"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>

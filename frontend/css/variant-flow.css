@@ -1,0 +1,89 @@
+.badge.status-available {
+    background: #e4f4eb;
+    color: #216a43;
+}
+
+.badge.status-rented {
+    background: #e7edf8;
+    color: #345581;
+}
+
+.badge.status-laundry {
+    background: #fff3d8;
+    color: #865d11;
+}
+
+.badge.status-repair {
+    background: #ffeadf;
+    color: #95471f;
+}
+
+.badge.status-not-available,
+.badge.status-unclassified {
+    background: #f8e4e4;
+    color: #923d3d;
+}
+
+.badge.status-mixed {
+    background: #e8e7f3;
+    color: #514579;
+}
+
+.badge.status-unverified {
+    background: #fff0db;
+    color: #8a4d12;
+}
+
+.deposit-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+    gap: 12px;
+    margin: 18px 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--warning);
+    background: #fff;
+    border-radius: 8px;
+}
+
+.deposit-summary h4 {
+    grid-column: 1/-1;
+    margin: 0;
+    font-size: 14px;
+}
+
+.deposit-summary div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.deposit-summary strong {
+    color: var(--text);
+    font-size: 15px;
+}
+
+.variant-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 150px;
+}
+
+.variant-color-unverified {
+    color: var(--warning);
+    font-weight: 700;
+}
+
+@media(max-width:640px) {
+    .deposit-summary {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        padding: 12px;
+    }
+
+    .variant-actions .btn {
+        padding: 7px 9px;
+    }
+}

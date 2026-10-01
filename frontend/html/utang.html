@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Utang Usaha — LAVÉ</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="utang">
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>LAVÉ</h1>
+                <span>DRESS RENTAL & ACCOUNTING</span>
+            </div>
+            <nav class="nav">
+                <div class="nav-title">Overview</div>
+                <a href="dashboard.html" data-page="dashboard">⌂ Dashboard</a>
+                <div class="nav-title">Master Data</div>
+                <a href="customer.html" data-page="customer">◉ Customer</a>
+                <a href="dress.html" data-page="dress">◇ Dress</a>
+                <a href="supplier.html" data-page="supplier">◈ Supplier</a>
+                <a href="kategori-dress.html" data-page="kategori-dress">▦ Kategori Dress</a>
+                <a href="kategori-biaya.html" data-page="kategori-biaya">▤ Kategori Biaya</a>
+                <a href="akun.html" data-page="akun">◫ Daftar Akun</a>
+                <div class="nav-title">Penyewaan</div>
+                <a href="penyewaan.html" data-page="penyewaan">◇ Penyewaan</a>
+                <a href="pembayaran.html" data-page="pembayaran">↳ Pembayaran</a>
+                <a href="pengembalian.html" data-page="pengembalian">↩ Pengembalian</a>
+                <a href="denda.html" data-page="denda">! Denda</a>
+                <div class="nav-title">Persediaan & Keuangan</div>
+                <a href="pembelian.html" data-page="pembelian">＋ Pembelian</a>
+                <a href="persediaan.html" data-page="persediaan">▥ Persediaan</a>
+                <a href="utang.html" data-page="utang">≡ Utang</a>
+                <a href="biaya-operasional.html" data-page="biaya-operasional">◌ Biaya Operasional</a>
+                <div class="nav-title">Akuntansi</div>
+                <a href="buku-besar.html" data-page="buku-besar">▥ Buku Besar</a>
+                <a href="neraca-saldo.html" data-page="neraca-saldo">▦ Neraca Saldo</a>
+                <a href="laporan.html" data-page="laporan">▧ Laporan Keuangan</a>
+            </nav>
+        </aside>
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <strong>LAVÉ Management System</strong>
+                    <div class="muted" style="font-size:11px">Integrated Rental · Inventory · Accounting</div>
+                </div>
+                <div class="muted">Administrator</div>
+            </header>
+            <div id="toast" class="toast"></div>
+            <section class="page">
+                <div class="page-title">
+                    <div>
+                        <h2>Utang Usaha</h2>
+                        <p>Data terintegrasi dari database Supabase.</p>
+                    </div>
+                    <button class="btn btn-light" onclick="window.print()">Cetak</button>
+                </div>
+                <div class="card table-card">
+                    <div class="table-head">
+                        <strong>Daftar Utang Usaha</strong>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Supplier</th>
+                                    <th>Tanggal</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        async function load() {
+            const { data, error } = await lave.supabase
+                .from('purchases')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                lave.toast(error.message, 'error');
+                return;
+            }
+
+            document.getElementById('tbody').innerHTML = (data || []).length
+                ? (data || []).map(r => `
+                    <tr>
+                        <td>${lave.escape(r['purchase_code'])}</td>
+                        <td>${lave.escape(r['supplier_id'])}</td>
+                        <td>${lave.escape(r['purchase_date'])}</td>
+                        <td>${lave.escape(r['total_amount'])}</td>
+                        <td>${lave.escape(r['payment_status'])}</td>
+                    </tr>
+                `).join('')
+                : `<tr><td colspan="5" class="empty">Belum ada data.</td></tr>`;
+        }
+
+        load()
+    </script>
+</body>
+</html>
