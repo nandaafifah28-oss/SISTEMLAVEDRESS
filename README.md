@@ -12,7 +12,7 @@ Frontend: HTML + CSS + JavaScript. Backend: Supabase PostgreSQL.
 ## GitHub Pages
 Workflow `.github/workflows/pages.yml` menerbitkan folder `frontend` setiap ada push ke branch `main`. Pada repository GitHub, buka **Settings > Pages** dan pilih **GitHub Actions** sebagai source. Setelah perubahan frontend dan workflow di-commit dan di-push, situs tersedia di URL Pages repository dan root situs langsung menuju dashboard tanpa halaman login. Repository harus public agar pengunjung dapat membuka kode/situs tanpa masuk ke GitHub; pengaturan visibility repository tidak bisa diubah dari file aplikasi.
 
-Untuk koneksi data tanpa login, jalankan migration `backend/database/36_public_access.sql` pada project Supabase yang URL-nya sedang dipakai di `frontend/js/config.js`. Tanpa migration tersebut, UI tetap terbuka tetapi request data akan ditolak. Migration itu membuka data dan operasi database kepada publik; jangan gunakan untuk data privat/produksi.
+Untuk koneksi data tanpa login, jalankan migration `backend/SUPABASE/database/36_public_access.sql` pada project Supabase yang URL-nya sedang dipakai di `frontend/js/config.js`. Tanpa migration tersebut, UI tetap terbuka tetapi request data akan ditolak. Migration itu membuka data dan operasi database kepada publik; jangan gunakan untuk data privat/produksi.
 
 **Peringatan keamanan:** Migration 36 menonaktifkan RLS dan memberi role `anon` akses baca/tulis serta eksekusi RPC pada seluruh schema `public`. Siapa pun yang mengetahui URL aplikasi dapat membaca, mengubah, atau menghapus data pelanggan dan akuntansi. Gunakan hanya jika database memang sengaja dipublikasikan; jangan gunakan untuk data privat atau produksi.
 
